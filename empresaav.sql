@@ -301,7 +301,21 @@ INSERT INTO VENTA VALUES (10,2000,'2020-12-14','VENTA DE CAMADA DE CHANCHO BLANC
 
 -----------funcion------
 
+create or replace function venta()
+RETURNS SETOF venta AS
+$BODY$
+			
+BEGIN   
+RETURN query
+SELECT *
+            from venta
+		where venta.ven_fecha < CURRENT_DATE;
+END;
+$BODY$ 
+language plpgsql;
 
+
+select * FROM venta();
 
 
 
